@@ -394,7 +394,8 @@
               'productType': 'Affogato, Ice Cream Cookie Sandwiches, Pints',
               'city': 'Ann Arbor',
               'postalCode': '48104',
-              'state': 'MI'
+              'state': 'MI',
+              'addresslink': 'https://www.yorka2.com'
             }
           },
 
@@ -685,7 +686,7 @@
         const popup = new mapboxgl.Popup({ closeOnClick: false })
           .setLngLat(currentFeature.geometry.coordinates)
 .setHTML(
-            `<h3>${currentFeature.properties.storeName}</h3><h4>${currentFeature.properties.productType}</h4>`
+            `<h3>${currentFeature.properties.storeName}</h3><h4>${currentFeature.properties.productType},${currentFeature.properties.addresslink}</h4>`
           )          .addTo(map);
       }
     </script>
