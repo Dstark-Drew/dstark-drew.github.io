@@ -234,7 +234,8 @@
               'storeName': 'Arbor Farms Market',
               'city': 'Ann Arbor',
               'postalCode': '48103',
-              'state': 'MI'
+              'state': 'MI',
+              'addresslink': 'https://maps.app.goo.gl/Pzji6kf3bq6suJbE6'
             }
           },
 
@@ -250,7 +251,8 @@
               'storeName': 'Argus Farm Stop - Liberty',
               'city': 'Ann Arbor',
               'postalCode': '48103',
-              'state': 'MI'
+              'state': 'MI',
+              'addresslink': 'https://maps.app.goo.gl/ZiDvkm9zt8kkrAGV8'
             }
           },
 
@@ -298,7 +300,8 @@
               'productType': 'Full Service',
               'city': 'Brighton',
               'postalCode': '48116',
-              'state': 'MI'
+              'state': 'MI',
+              'addresslink': 'https://maps.app.goo.gl/f5WVYsbhhKXE71398'
             }
           },
 
@@ -687,7 +690,7 @@
         const popup = new mapboxgl.Popup({ closeOnClick: false })
           .setLngLat(currentFeature.geometry.coordinates)
 .setHTML(
-            `<h3>${currentFeature.properties.storeName}</h3><h4>${currentFeature.properties.productType} <br> <br> <a href=${currentFeature.properties.addresslink} target="_blank"><font color="#0000FF">Website</font></a></h4>`
+            `<h3>${currentFeature.properties.storeName}</h3><h4>${currentFeature.properties.productType} <br> <br> <a href=${currentFeature.properties.addresslink} target="_blank"><font color="#0000FF">Click for more information</font></a></h4>`
           )          .addTo(map);
       }
     </script>
