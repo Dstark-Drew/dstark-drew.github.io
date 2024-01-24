@@ -650,14 +650,11 @@
           link.href = '#';
           link.className = 'title';
           link.id = `link-${store.properties.id}`;
-          link.innerHTML = `${store.properties.address}`;
+          link.innerHTML = `${store.properties.storeName}`;
 
           /* Add details to the individual listing. */
           const details = listing.appendChild(document.createElement('div'));
-          details.innerHTML = `${store.properties.city}`;
-          if (store.properties.phone) {
-            details.innerHTML += ` &middot; ${store.properties.phoneFormatted}`;
-          }
+          details.innerHTML = `${store.properties.address}`;
           if (store.properties.distance) {
             const roundedDistance =
               Math.round(store.properties.distance * 100) / 100;
