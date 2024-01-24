@@ -705,6 +705,11 @@
             }
             this.parentNode.classList.add('active');**/
           });
+      
+      // Change the cursor to a pointer when the mouse is over the places layer.
+      map.on('mouseenter', 'places', () => {
+        map.getCanvas().style.cursor = 'pointer';
+      });
 
       /**
        * Create a Mapbox GL JS `Popup`.
