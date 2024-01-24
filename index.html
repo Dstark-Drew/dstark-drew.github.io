@@ -2,16 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Demo: Sort stores by distance</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
       rel="stylesheet"
     />
     <!-- Mapbox GL JS -->
-    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.js"></script>
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
     <link
-      href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.css"
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css"
       rel="stylesheet"
     />
     <!-- Geocoder plugin -->
@@ -49,10 +48,6 @@
         border-right: 1px solid rgb(0 0 0 / 25%);
       }
 
-      .pad2 {
-        padding: 20px;
-      }
-
       .map {
         position: absolute;
         left: 33.3333%;
@@ -66,7 +61,7 @@
         margin: 0;
         font-weight: 400;
         line-height: 20px;
-        padding: 20px 2px;
+        padding: 20px 3px 1px;
       }
 
       a {
@@ -81,20 +76,22 @@
       .heading {
         background: #fff;
         border-bottom: 1px solid #eee;
-        min-height: 60px;
-        line-height: 60px;
+        min-height: 10px;
+        line-height: 10px;
         padding: 0 10px;
-        background-color: #00853e;
+        background-color: #fcb6d2;
         color: #fff;
       }
 
       .listings {
+        background-color: #fff;
         height: 100%;
         overflow: auto;
         padding-bottom: 60px;
       }
 
       .listings .item {
+        display: block;
         border-bottom: 1px solid #eee;
         padding: 10px;
         text-decoration: none;
@@ -106,7 +103,7 @@
 
       .listings .item .title {
         display: block;
-        color: #00853e;
+        color: #fcb6d2;
         font-weight: 700;
       }
 
@@ -116,7 +113,7 @@
 
       .listings .item.active .title,
       .listings .item .title:hover {
-        color: #8cc63f;
+        color: #fcb6d2;
       }
 
       .listings .item.active {
@@ -135,21 +132,13 @@
       }
 
       ::-webkit-scrollbar-thumb {
-        background: #00853e;
+        background: #fcb6d2;
         border-radius: 0;
-      }
-
-      .marker {
-        border: none;
-        cursor: pointer;
-        height: 56px;
-        width: 56px;
-        background-image: url('marker.png');
       }
 
       /* Marker tweaks */
       .mapboxgl-popup {
-        padding-bottom: 50px;
+        padding-bottom: 10px;
       }
 
       .mapboxgl-popup-close-button {
@@ -162,16 +151,17 @@
           'Helvetica Neue',
           sans-serif;
         padding: 0;
-        width: 180px;
+        width: 150px;
       }
 
       .mapboxgl-popup-content h3 {
-        background: #91c949;
+        background: #fcb6d2;
         color: #fff;
-        margin: -15px 0 0;
+        margin: 0;
         padding: 10px;
         border-radius: 3px 3px 0 0;
         font-weight: 700;
+        margin-top: -15px;
       }
 
       .mapboxgl-popup-content h4 {
@@ -189,7 +179,7 @@
       }
 
       .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
-        border-bottom-color: #91c949;
+        border-bottom-color: #fcb6d2;
       }
 
       .mapboxgl-ctrl-geocoder {
@@ -210,7 +200,8 @@
   <body>
     <div class="sidebar">
       <div class="heading">
-        <h1>Our locations</h1>
+        <h1>Blank Slate Product Locations</h1>
+        <h4>&nbspEnter your address to find the nearest distributor!</h4>
       </div>
       <div id="listings" class="listings"></div>
     </div>
@@ -223,9 +214,9 @@
        */
       const map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/light-v11',
-        center: [-77.034084142948, 38.909671288923],
-        zoom: 13,
+        style: 'mapbox://styles/blankslatecreamery/clndjlfl607qv01phgnga06nx',
+        center: [-83.748482, 42.281422],
+        zoom: 10.7,
         scrollZoom: false
       });
 
@@ -236,203 +227,213 @@
             'type': 'Feature',
             'geometry': {
               'type': 'Point',
-              'coordinates': [-77.034084142948, 38.909671288923]
+              'coordinates': [-83.7764864, 42.2720415]
             },
             'properties': {
-              'phoneFormatted': '(202) 234-7336',
-              'phone': '2022347336',
-              'address': '1471 P St NW',
-              'city': 'Washington DC',
-              'country': 'United States',
-              'crossStreet': 'at 15th St NW',
-              'postalCode': '20005',
-              'state': 'D.C.'
+              'address': '2103 W Stadium Blvd., Ann Arbor, MI 48103',
+              'productType': 'Pints: 8 - 10 Flavors, 2 Non-Dairies',
+              'storeName': 'Arbor Farms Market',
+              'city': 'Ann Arbor',
+              'postalCode': '48103',
+              'state': 'MI',
+              'addresslink': 'https://maps.app.goo.gl/Pzji6kf3bq6suJbE6'
             }
           },
+
           {
             'type': 'Feature',
             'geometry': {
               'type': 'Point',
-              'coordinates': [-77.049766, 38.900772]
+              'coordinates': [-83.7521094, 42.2789795]
             },
             'properties': {
-              'phoneFormatted': '(202) 507-8357',
-              'phone': '2025078357',
-              'address': '2221 I St NW',
-              'city': 'Washington DC',
-              'country': 'United States',
-              'crossStreet': 'at 22nd St NW',
-              'postalCode': '20037',
-              'state': 'D.C.'
+              'address': '325 W Liberty St., Ann Arbor, MI 48103',
+              'productType': 'Pints: Usually 4 Flavors, 1 Non-Dairy',
+              'storeName': 'Argus Farm Stop - Liberty',
+              'city': 'Ann Arbor',
+              'postalCode': '48103',
+              'state': 'MI',
+              'addresslink': 'https://maps.app.goo.gl/ZiDvkm9zt8kkrAGV8'
             }
           },
+
           {
             'type': 'Feature',
             'geometry': {
               'type': 'Point',
-              'coordinates': [-77.043929, 38.910525]
+              'coordinates': [-83.7348589,42.2653378]
             },
             'properties': {
-              'phoneFormatted': '(202) 387-9338',
-              'phone': '2023879338',
-              'address': '1512 Connecticut Ave NW',
-              'city': 'Washington DC',
-              'country': 'United States',
-              'crossStreet': 'at Dupont Circle',
-              'postalCode': '20036',
-              'state': 'D.C.'
+              'address': '1226 Packard St., Ann Arbor, MI 48104',
+              'storeName': 'Argus Farm Stop - Packard Market',
+              'productType': 'Pints: 6 - 8 Flavors, 1 - 2 Non-Dairy',
+              'city': 'Ann Arbor',
+              'postalCode': '48104',
+              'state': 'MI',
+              'addresslink': 'https://maps.app.goo.gl/bXkJmxTMsBjb3Y4B9'
+
             }
           },
+
           {
             'type': 'Feature',
             'geometry': {
               'type': 'Point',
-              'coordinates': [-77.0672, 38.90516896]
+              'coordinates': [-83.75134988591368, 42.27971577446359]
             },
             'properties': {
-              'phoneFormatted': '(202) 337-9338',
-              'phone': '2023379338',
-              'address': '3333 M St NW',
-              'city': 'Washington DC',
-              'country': 'United States',
-              'crossStreet': 'at 34th St NW',
-              'postalCode': '20007',
-              'state': 'D.C.'
+              'address': '300 W. Liberty Street, Ann Arbor, MI 48103',
+              'storeName': 'Blank Slate Creamery Ann Arbor',
+              'productType': 'Full Service - Flagship Store',
+              'city': 'Ann Arbor',
+              'postalCode': '48103',
+              'state': 'MI',
+              'addresslink': 'https://maps.app.goo.gl/9H9JdFS8wDHESZQ6A'
+
             }
           },
+          
           {
             'type': 'Feature',
             'geometry': {
               'type': 'Point',
-              'coordinates': [-77.002583742142, 38.887041080933]
+              'coordinates': [-83.7802898, 42.5292746]
             },
             'properties': {
-              'phoneFormatted': '(202) 547-9338',
-              'phone': '2025479338',
-              'address': '221 Pennsylvania Ave SE',
-              'city': 'Washington DC',
-              'country': 'United States',
-              'crossStreet': 'btwn 2nd & 3rd Sts. SE',
-              'postalCode': '20003',
-              'state': 'D.C.'
+              'address': '126 E. Grand River Ave., Brighton, MI 48116',
+              'storeName': 'Blank Slate Creamery Brighton',
+              'productType': 'Full Service',
+              'city': 'Brighton',
+              'postalCode': '48116',
+              'state': 'MI',
+              'addresslink': 'https://maps.app.goo.gl/f5WVYsbhhKXE71398'
             }
           },
+
           {
             'type': 'Feature',
             'geometry': {
               'type': 'Point',
-              'coordinates': [-76.933492720127, 38.99225245786]
+              'coordinates': [-83.88509837301682,42.29373227128573]
             },
             'properties': {
-              'address': '8204 Baltimore Ave',
-              'city': 'College Park',
-              'country': 'United States',
-              'postalCode': '20740',
-              'state': 'MD'
+              'address': '7879 STE C, Jackson Rd., Ann Arbor, MI 48103',
+              'storeName': 'Blank Slate Creamery Jackson Road',
+              'productType': 'Pint Carry-out',
+              'city': 'Ann Arbor',
+              'postalCode': '48103',
+              'state': 'MI',
+              'addresslink': 'https://maps.app.goo.gl/Q55sYLfqBAkYUV557'
+
             }
           },
+
           {
             'type': 'Feature',
             'geometry': {
               'type': 'Point',
-              'coordinates': [-77.097083330154, 38.980979]
+              'coordinates': [-83.80927404653147, 42.567400490391606]
             },
             'properties': {
-              'phoneFormatted': '(301) 654-7336',
-              'phone': '3016547336',
-              'address': '4831 Bethesda Ave',
-              'cc': 'US',
-              'city': 'Bethesda',
-              'country': 'United States',
-              'postalCode': '20814',
-              'state': 'MD'
+              'address': '7300 Grand River Ave., Brighton, MI 48114',
+              'storeName': 'Simply Fresh Market',
+              'productType': 'Pints: 4 - 6 Flavors, 1 Non-Dairy',
+              'city': 'Brighton',
+              'postalCode': '48114',
+              'state': 'MI',
+              'addresslink': 'https://maps.app.goo.gl/44tsiKYewtzMvBXM7'
+
             }
           },
+
           {
             'type': 'Feature',
             'geometry': {
               'type': 'Point',
-              'coordinates': [-77.359425054188, 38.958058116661]
+              'coordinates': [-83.7462301532896, 42.28433371939251]
             },
             'properties': {
-              'phoneFormatted': '(571) 203-0082',
-              'phone': '5712030082',
-              'address': '11935 Democracy Dr',
-              'city': 'Reston',
-              'country': 'United States',
-              'crossStreet': 'btw Explorer & Library',
-              'postalCode': '20190',
-              'state': 'VA'
+              'address': '407 N. 5th Ave., Ann Arbor, MI 48104',
+              'storeName': 'Sparrow Meat Market',
+              'productType': 'Ice Cream Cookie Sandwiches, Pints: 6 - 8 Flavors, 1 Non-Dairy',
+              'city': 'Ann Arbor',
+              'postalCode': '48104',
+              'state': 'MI',
+              'addresslink': 'https://maps.app.goo.gl/UW48ddSqJM338shU7'
             }
           },
+
           {
             'type': 'Feature',
             'geometry': {
               'type': 'Point',
-              'coordinates': [-77.10853099823, 38.880100922392]
+              'coordinates': [-83.73633458635386, 42.25994722457734]
             },
             'properties': {
-              'phoneFormatted': '(703) 522-2016',
-              'phone': '7035222016',
-              'address': '4075 Wilson Blvd',
-              'city': 'Arlington',
-              'country': 'United States',
-              'crossStreet': 'at N Randolph St.',
-              'postalCode': '22203',
-              'state': 'VA'
+              'address': '1919 S. Industrial Hwy STE C, Ann Arbor, MI 48104',
+              'storeName': 'Venue Market and Cafe',
+              'productType': 'Pints: 4 - 5 Flavors, Non-Dairy & Gluten Free Options',
+              'city': 'Ann Arbor',
+              'postalCode': '48104',
+              'state': 'MI',
+              'addresslink': 'https://maps.app.goo.gl/S1wmLLMcyHVBovPU8'
             }
           },
+
           {
             'type': 'Feature',
             'geometry': {
               'type': 'Point',
-              'coordinates': [-75.28784, 40.008008]
+              'coordinates': [-83.60844129072257, 42.24535658581283]
             },
             'properties': {
-              'phoneFormatted': '(610) 642-9400',
-              'phone': '6106429400',
-              'address': '68 Coulter Ave',
-              'city': 'Ardmore',
-              'country': 'United States',
-              'postalCode': '19003',
-              'state': 'PA'
+              'address': '7312 N River St., Ypsilanti, MI 48198',
+              'storeName': 'Ypsilanti Food Co-op',
+              'productType': 'Pints: 3 - 4 Flavors, 1 Non-Dairy',
+              'city': 'Ypsilanti',
+              'postalCode': '48198',
+              'state': 'MI',
+              'addresslink': 'https://maps.app.goo.gl/RwVtnw3kZoB719x66'
             }
           },
+
           {
             'type': 'Feature',
             'geometry': {
               'type': 'Point',
-              'coordinates': [-75.20121216774, 39.954030175164]
+              'coordinates': [-83.72796210236362, 42.25777017825699]
             },
             'properties': {
-              'phoneFormatted': '(215) 386-1365',
-              'phone': '2153861365',
-              'address': '3925 Walnut St',
-              'city': 'Philadelphia',
-              'country': 'United States',
-              'postalCode': '19104',
-              'state': 'PA'
+              'address': '1928 Packard St., Ann Arbor, MI 48104',
+              'storeName': 'YORK Food and Drink',
+              'productType': 'Affogato, Ice Cream Cookie Sandwiches, Pints: 7 - 9 Flavors, 2 Non-Dairies',
+              'city': 'Ann Arbor',
+              'postalCode': '48104',
+              'state': 'MI',
+              'addresslink': 'https://maps.app.goo.gl/Jt4azcK3W2rLfFLC8'
             }
           },
+
           {
             'type': 'Feature',
             'geometry': {
               'type': 'Point',
-              'coordinates': [-77.043959498405, 38.903883387232]
+              'coordinates': [-83.87158800236328, 42.26659476318419]
             },
             'properties': {
-              'phoneFormatted': '(202) 331-3355',
-              'phone': '2023313355',
-              'address': '1901 L St. NW',
-              'city': 'Washington DC',
-              'country': 'United States',
-              'crossStreet': 'at 19th St',
-              'postalCode': '20036',
-              'state': 'D.C.'
+              'address': '7217 W Liberty Rd., Ann Arbor, MI 48103',
+              'storeName': 'White Lotus Farms',
+              'productType': 'Pints: 2 - 4 Flavors, 1 Non-Dairy',
+              'city': 'Ann Arbor',
+              'postalCode': '48103',
+              'state': 'MI',
+              'addresslink': 'https://maps.app.goo.gl/BiW36avaocHAQ4QX7'
             }
-          }
+          },
         ]
       };
+
+
 
       /**
        * Assign a unique id to each store. You'll use this `id`
@@ -704,13 +705,11 @@
       function createPopUp(currentFeature) {
         const popUps = document.getElementsByClassName('mapboxgl-popup');
         if (popUps[0]) popUps[0].remove();
-
         const popup = new mapboxgl.Popup({ closeOnClick: false })
           .setLngLat(currentFeature.geometry.coordinates)
-          .setHTML(
-            `<h3>Sweetgreen</h3><h4>${currentFeature.properties.address}</h4>`
-          )
-          .addTo(map);
+.setHTML(
+            `<h3>${currentFeature.properties.storeName}</h3><h4>${currentFeature.properties.productType} <br> <br> <a href=${currentFeature.properties.addresslink} target="_blank"><font color="#0000FF">Click for more information</font></a></h4>`
+          )          .addTo(map);
       }
     </script>
   </body>
