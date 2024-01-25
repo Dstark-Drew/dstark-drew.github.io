@@ -500,6 +500,7 @@
          */
         buildLocationList(stores);
         map.addControl(geocoder, 'top-left');
+        map.addControl(new mapboxgl.NavigationControl());
         addMarkers();
 
         /**
