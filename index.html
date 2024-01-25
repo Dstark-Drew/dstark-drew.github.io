@@ -106,7 +106,7 @@
 
       .listings .item .title {
         display: block;
-        color: #00853e;
+        color: #fcb6d2;
         font-weight: 700;
       }
 
@@ -116,7 +116,7 @@
 
       .listings .item.active .title,
       .listings .item .title:hover {
-        color: #8cc63f;
+        color: #fcb6d2;
       }
 
       .listings .item.active {
@@ -135,7 +135,7 @@
       }
 
       ::-webkit-scrollbar-thumb {
-        background: #00853e;
+        background: #fcb6d2;
         border-radius: 0;
       }
 
@@ -166,7 +166,7 @@
       }
 
       .mapboxgl-popup-content h3 {
-        background: #91c949;
+        background: #fcb6d2;
         color: #fff;
         margin: -15px 0 0;
         padding: 10px;
@@ -189,7 +189,7 @@
       }
 
       .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
-        border-bottom-color: #91c949;
+        border-bottom-color: #fcb6d2;
       }
 
       .mapboxgl-ctrl-geocoder {
@@ -674,14 +674,13 @@
           link.href = '#';
           link.className = 'title';
           link.id = `link-${store.properties.id}`;
-          link.innerHTML = `${store.properties.address}`;
+          link.innerHTML = `${store.properties.storeName}`;
 
           /* Add details to the individual listing. */
           const details = listing.appendChild(document.createElement('div'));
-          details.innerHTML = `${store.properties.city}`;
-          if (store.properties.phone) {
-            details.innerHTML += ` &middot; ${store.properties.phoneFormatted}`;
-          }
+          details.innerHTML = `${store.properties.address}`;
+          
+
           if (store.properties.distance) {
             const roundedDistance =
               Math.round(store.properties.distance * 100) / 100;
