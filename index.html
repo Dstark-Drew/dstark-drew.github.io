@@ -1,16 +1,19 @@
+THIS IS THE OG CODE FROM MAPBOX
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <title>Demo: Sort stores by distance</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
       rel="stylesheet"
     />
     <!-- Mapbox GL JS -->
-    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.js"></script>
     <link
-      href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css"
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.1.0/mapbox-gl.css"
       rel="stylesheet"
     />
     <!-- Geocoder plugin -->
@@ -48,6 +51,10 @@
         border-right: 1px solid rgb(0 0 0 / 25%);
       }
 
+      .pad2 {
+        padding: 20px;
+      }
+
       .map {
         position: absolute;
         left: 33.3333%;
@@ -76,22 +83,20 @@
       .heading {
         background: #fff;
         border-bottom: 1px solid #eee;
-        min-height: 10px;
-        line-height: 10px;
+        min-height: 60px;
+        line-height: 60px;
         padding: 0 10px;
-        background-color: #fcb6d2;
+        background-color: #00853e;
         color: #fff;
       }
 
       .listings {
-        background-color: #fff;
         height: 100%;
         overflow: auto;
         padding-bottom: 60px;
       }
 
       .listings .item {
-        display: block;
         border-bottom: 1px solid #eee;
         padding: 10px;
         text-decoration: none;
@@ -103,7 +108,7 @@
 
       .listings .item .title {
         display: block;
-        color: #fcb6d2;
+        color: #00853e;
         font-weight: 700;
       }
 
@@ -113,7 +118,7 @@
 
       .listings .item.active .title,
       .listings .item .title:hover {
-        color: #fcb6d2;
+        color: #8cc63f;
       }
 
       .listings .item.active {
@@ -132,13 +137,21 @@
       }
 
       ::-webkit-scrollbar-thumb {
-        background: #fcb6d2;
+        background: #00853e;
         border-radius: 0;
+      }
+
+      .marker {
+        border: none;
+        cursor: pointer;
+        height: 56px;
+        width: 56px;
+        background-image: url('marker.png');
       }
 
       /* Marker tweaks */
       .mapboxgl-popup {
-        padding-bottom: 10px;
+        padding-bottom: 50px;
       }
 
       .mapboxgl-popup-close-button {
@@ -151,17 +164,16 @@
           'Helvetica Neue',
           sans-serif;
         padding: 0;
-        width: 150px;
+        width: 180px;
       }
 
       .mapboxgl-popup-content h3 {
-        background: #fcb6d2;
+        background: #91c949;
         color: #fff;
-        margin: 0;
+        margin: -15px 0 0;
         padding: 10px;
         border-radius: 3px 3px 0 0;
         font-weight: 700;
-        margin-top: -15px;
       }
 
       .mapboxgl-popup-content h4 {
@@ -179,7 +191,7 @@
       }
 
       .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
-        border-bottom-color: #fcb6d2;
+        border-bottom-color: #91c949;
       }
 
       .mapboxgl-ctrl-geocoder {
@@ -200,8 +212,7 @@
   <body>
     <div class="sidebar">
       <div class="heading">
-        <h1>Blank Slate Product Locations</h1>
-        <h4>&nbspEnter your address to find the nearest distributor!</h4>
+        <h1>Our locations</h1>
       </div>
       <div id="listings" class="listings"></div>
     </div>
@@ -219,10 +230,26 @@
         zoom: 10.7,
         scrollZoom: false
       });
-
+      
       const stores = {
         'type': 'FeatureCollection',
         'features': [
+          {
+            'type': 'Feature',
+            'geometry': {
+              'type': 'Point',
+              'coordinates': [-84.02016820238894, 42.319105627817]
+            },
+            'properties': {
+              'address': '118 N Main St, Chelsea, MI 48118',
+              'productType': 'Ice Cream Cookie Sandwiches, Pints: 4 - 5 Flavors, 1 Non-Dairy',
+              'storeName': 'Agricole',
+              'city': 'Chelsea',
+              'postalCode': '48118',
+              'state': 'MI',
+              'addresslink': 'https://maps.app.goo.gl/JzRVfE8GMi1bzWuj8'
+            }
+          },
           {
             'type': 'Feature',
             'geometry': {
@@ -433,8 +460,6 @@
         ]
       };
 
-
-
       /**
        * Assign a unique id to each store. You'll use this `id`
        * later to associate each point on the map with a listing
@@ -464,6 +489,7 @@
           accessToken: mapboxgl.accessToken,
           mapboxgl: mapboxgl,
           marker: true,
+          bbox: [-77.210763, 38.803367, -76.853675, 39.052643]
         });
 
         /**
@@ -650,11 +676,14 @@
           link.href = '#';
           link.className = 'title';
           link.id = `link-${store.properties.id}`;
-          link.innerHTML = `${store.properties.storeName}`;
+          link.innerHTML = `${store.properties.address}`;
 
           /* Add details to the individual listing. */
           const details = listing.appendChild(document.createElement('div'));
-          details.innerHTML = `${store.properties.address}`;
+          details.innerHTML = `${store.properties.city}`;
+          if (store.properties.phone) {
+            details.innerHTML += ` &middot; ${store.properties.phoneFormatted}`;
+          }
           if (store.properties.distance) {
             const roundedDistance =
               Math.round(store.properties.distance * 100) / 100;
@@ -701,11 +730,13 @@
       function createPopUp(currentFeature) {
         const popUps = document.getElementsByClassName('mapboxgl-popup');
         if (popUps[0]) popUps[0].remove();
+
         const popup = new mapboxgl.Popup({ closeOnClick: false })
           .setLngLat(currentFeature.geometry.coordinates)
-.setHTML(
-            `<h3>${currentFeature.properties.storeName}</h3><h4>${currentFeature.properties.productType} <br> <br> <a href=${currentFeature.properties.addresslink} target="_blank"><font color="#0000FF">Click for more information</font></a></h4>`
-          )          .addTo(map);
+          .setHTML(
+            `<h3>Sweetgreen</h3><h4>${currentFeature.properties.address}</h4>`
+          )
+          .addTo(map);
       }
     </script>
   </body>
