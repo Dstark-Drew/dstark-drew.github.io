@@ -682,11 +682,11 @@
           link.href = '#';
           link.className = 'title';
           link.id = `link-${store.properties.id}`;
-          link.innerHTML = `${store.properties.storeName}` `${store.properties.emoji}`;
+          link.innerHTML = `${store.properties.storeName}`;
 
           /* Add details to the individual listing. */
           const details = listing.appendChild(document.createElement('div'));
-          details.innerHTML = `${store.properties.address}`;
+          details.innerHTML = `${store.properties.emoji}`;
           
 
           if (store.properties.distance) {
