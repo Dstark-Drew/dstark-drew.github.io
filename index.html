@@ -676,9 +676,9 @@
           /* Add the link to the individual listing created above. */
           const link = listing.appendChild(document.createElement('a'));
           link.href = '#';
-          link.className = 'title' 'emoji';
+          link.className = 'title';
           link.id = `link-${store.properties.id}`;
-          link.innerHTML = `${store.properties.storeName}`;
+          link.innerHTML = `${store.properties.storeName}` 'emoji';
 
           /* Add details to the individual listing. */
           const details = listing.appendChild(document.createElement('div'));
