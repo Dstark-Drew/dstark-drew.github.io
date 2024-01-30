@@ -248,7 +248,8 @@
               'city': 'Chelsea',
               'postalCode': '48118',
               'state': 'MI',
-              'addresslink': 'https://maps.app.goo.gl/JzRVfE8GMi1bzWuj8'
+              'addresslink': 'https://maps.app.goo.gl/JzRVfE8GMi1bzWuj8',
+              'emoji' : 'https://github.com/Dstark-Drew/dstark-drew.github.io/blob/main/ConeEmoji.png'
             }
           },
           {
@@ -675,7 +676,7 @@
           /* Add the link to the individual listing created above. */
           const link = listing.appendChild(document.createElement('a'));
           link.href = '#';
-          link.className = 'title';
+          link.className = 'title' 'emoji';
           link.id = `link-${store.properties.id}`;
           link.innerHTML = `${store.properties.storeName}`;
 
